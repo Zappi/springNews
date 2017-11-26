@@ -15,5 +15,13 @@
     <h2 th:text="${news.heading}">Heading</h2>
     <p th:text="${news.releaseTime}">Release Time</p>
 
+    <section th:each="category: ${categories}">
+        <h4 th:text="${category.name}"></h4>
+    </section>
+
+    <section th:each="journalist: ${journalists}">
+        <h4 th:text="${journalist.name}"></h4>
+    </section>
+
 </body>
 </html>
