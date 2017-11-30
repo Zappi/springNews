@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All news</title>
+</head>
+<body>
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <ul>
+        <li th:each="singleNew: ${news}">
+            <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
+            <span th:text="${singleNew.releaseTime}">Date</span>
+        </li>
+    </ul>
+
+
+</body>
+</html>

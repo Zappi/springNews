@@ -20,6 +20,7 @@ import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 import wad.service.CategoryService;
 import wad.service.JournalistService;
+import wad.service.NewsService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,10 +39,18 @@ public class NewsController {
     private CategoryService categoryService;
     @Autowired
     private JournalistService journalistService;
+    @Autowired
+    private NewsService newsService;
 
     private Category category;
     private Journalist journalist;
 
+
+    @GetMapping("/news")
+    public String listAllNews(Model model) {
+        model.addAttribute("news", newsRepository.findAll());
+        return "allNews";
+    }
 
     @GetMapping("/news/{id}")
     public String viewSingleNews(Model model, @PathVariable Long id) {
