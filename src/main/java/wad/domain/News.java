@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,8 @@ public class News extends AbstractPersistable<Long> {
 
     private String heading;
     private String lead;   //ingressi
-    @Lob
-    private byte[] image;
+    @OneToOne
+    private Image image;
     private String text;
     private int pageOpened = 0;
     private LocalDate releaseTime;
@@ -56,12 +57,16 @@ public class News extends AbstractPersistable<Long> {
         this.lead = lead;
     }
 
-    public byte[] getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Image image) {
         this.image = image;
+    }
+
+    public void setPageOpened(int pageOpened) {
+        this.pageOpened = pageOpened;
     }
 
     public String getText() {

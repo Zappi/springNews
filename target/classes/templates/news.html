@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" href="style.css">
 </head>
 <body>
 
@@ -13,6 +14,8 @@
     <p>Single news page</p>
 
     <h2 th:text="${news.heading}">Heading</h2>
+
+    <h4 th:text="${news.lead}">Leading paragraph</h4>
     <p th:text="${news.releaseTime}">Release Time</p>
 
     <section th:each="category: ${categories}">
@@ -22,6 +25,11 @@
     <section th:each="journalist: ${journalists}">
         <h4 th:text="${journalist.name}"></h4>
     </section>
+
+    <!--IMAGE HERE -->
+    <div class="image">
+        <img th:src="@{/news/{id}/content(id=${imageid})}" />
+    </div>
 
 </body>
 </html>

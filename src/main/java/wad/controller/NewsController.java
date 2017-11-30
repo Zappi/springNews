@@ -8,20 +8,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import wad.domain.Category;
+import wad.domain.Image;
 import wad.domain.Journalist;
 import wad.domain.News;
 import wad.repository.CategoryRepository;
+import wad.repository.ImageRepository;
 import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 import wad.service.CategoryService;
+import wad.service.ImageService;
 import wad.service.JournalistService;
 import wad.service.NewsService;
 
+import javax.annotation.security.PermitAll;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,7 +43,9 @@ public class NewsController {
     @Autowired
     private JournalistService journalistService;
     @Autowired
-    private NewsService newsService;
+    private ImageRepository imageRepository;
+    @Autowired
+    private ImageService imageService;
 
     private Category category;
     private Journalist journalist;
@@ -59,7 +64,15 @@ public class NewsController {
         model.addAttribute("news", news);
         model.addAttribute("categories", categoryService.getCategories(news.getCategoryList()));
         model.addAttribute("journalists", journalistService.getJournalists(news.getJournalistList()));
+        model.addAttribute("imageid", news.getImage().getId());
+        System.out.println(news.getImage().getId());
         return "news";
+    }
+
+    @GetMapping(path= "news/{id}/content", produces="image/png")
+    @ResponseBody
+    public byte[] getImage(@PathVariable Long id) {
+        return imageRepository.getOne(id).getContent();
     }
 
 
@@ -72,15 +85,17 @@ public class NewsController {
     @PostMapping("/news/create")
     public String submitNewPieceOfNews(@RequestParam String heading,
                                         @RequestParam String lead, @RequestParam String text,
-                                        @RequestParam String journalists, @RequestParam String categories) {
+                                        @RequestParam String journalists, @RequestParam String categories,
+                                        @RequestParam("file") MultipartFile image) throws IOException {
 
         LocalDate localDate = LocalDate.now();
+
         Long newsId = newsRepository.save(new News(heading, lead, text, localDate)).getId();
 
-        //Sama viel toimittajille
+        imageService.addNewsToImage(newsId, image);
         categoryService.addNewsToCategories(newsId, categoryService.parseCategoryList(categories));
-
         journalistService.addNewsToJournalists(newsId, journalistService.parseJournalistList(journalists));
+
 
 
         return "redirect:/news/create";
