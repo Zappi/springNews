@@ -30,5 +30,16 @@ public class NewsService {
         return news;
     }
 
+    public int lastFiveIndex() {
+        List<News> news = newsRepository.findAll();
+        int size = news.size();
+
+        if(size-4 >= 0) {
+            return size - 4;
+        }
+
+        return 0;
+    }
+
 
 }

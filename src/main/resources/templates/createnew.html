@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+    <link rel="stylesheet" type="text/css" media="all" href="assets/style.css">
+    <style>
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,7 +20,7 @@
     <form method="POST" th:action="@{/news/create}" enctype="multipart/form-data">
         <p>Heading<input type="text" name="heading"/></p>
         <p>Lead paragraph<input type="text" name="lead"/></p>
-        <p>Text<input type="text" name="text"/></p>
+        <p>Text<textarea rows="10" cols="50" name="text"> Enter the text here...</textarea></p>
         <p>Authors<input type="text" name="journalists"/></p>
         <p>Categories<input type="text" name="categories"/></p>
         <input type="file" name="file" id="file"/>

@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +27,17 @@ public class News extends AbstractPersistable<Long> {
     private Image image;
     private String text;
     private int pageOpened = 0;
-    private LocalDate releaseTime;
+    private LocalDateTime localTime;
     @ManyToMany
     private List<Journalist> journalistList;
     @ManyToMany
     private List<Category> categoryList;
 
-    public News(String heading, String lead, String text, LocalDate localDate) {
+    public News(String heading, String lead, String text, LocalDateTime localTime) {
         this.heading = heading;
         this.lead = lead;
         this.text = text;
-        this.releaseTime = localDate;
+        this.localTime = localTime;
         this.categoryList = new ArrayList<>();
         this.journalistList = new ArrayList<>();
     }
@@ -77,12 +78,12 @@ public class News extends AbstractPersistable<Long> {
         this.text = text;
     }
 
-    public LocalDate getReleaseTime() {
-        return releaseTime;
+    public LocalDateTime getReleaseTime() {
+        return localTime;
     }
 
-    public void setReleaseTime(LocalDate releaseTime) {
-        this.releaseTime = releaseTime;
+    public void setReleaseTime(LocalDateTime releaseTime) {
+        this.localTime = releaseTime;
     }
 
     public List<Journalist> getJournalistList() {

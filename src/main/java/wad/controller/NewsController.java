@@ -4,6 +4,10 @@ package wad.controller;
 import com.sun.org.apache.regexp.internal.RE;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,9 @@ import wad.service.NewsService;
 import javax.annotation.security.PermitAll;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -47,8 +54,25 @@ public class NewsController {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private NewsService newsService;
+
     private Category category;
     private Journalist journalist;
+
+    @GetMapping("/")
+    public String showFrontPage(Model model) {
+
+        Pageable pageable = PageRequest.of(0,5, Sort.Direction.DESC, "localTime");
+        Page<News> news = newsRepository.findAll(pageable);
+        List<Long> imageIds = new ArrayList<>();
+        for (News single: news) {
+            imageIds.add(single.getImage().getId());
+        }
+        model.addAttribute("news", newsRepository.findAll(pageable));
+        model.addAttribute("imageids", imageIds);
+        return "index";
+    }
 
 
     @GetMapping("/news")
@@ -88,9 +112,10 @@ public class NewsController {
                                         @RequestParam String journalists, @RequestParam String categories,
                                         @RequestParam("file") MultipartFile image) throws IOException {
 
-        LocalDate localDate = LocalDate.now();
+        LocalDateTime localDateTime = LocalDateTime.now();
 
-        Long newsId = newsRepository.save(new News(heading, lead, text, localDate)).getId();
+
+        Long newsId = newsRepository.save(new News(heading, lead, text, localDateTime)).getId();
 
         imageService.addNewsToImage(newsId, image);
         categoryService.addNewsToCategories(newsId, categoryService.parseCategoryList(categories));

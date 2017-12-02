@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <style>
+        img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .sameLine {
+            display: block;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -11,25 +23,27 @@
 
     </header>
 
-    <p>Single news page</p>
-
     <h2 th:text="${news.heading}">Heading</h2>
 
     <h4 th:text="${news.lead}">Leading paragraph</h4>
-    <p th:text="${news.releaseTime}">Release Time</p>
+    <p th:text="${news.localTime}">Release Time</p>
 
     <section th:each="category: ${categories}">
-        <h4 th:text="${category.name}"></h4>
+        <h4 class="sameLine" th:text="${category.name}"></h4>
     </section>
 
     <section th:each="journalist: ${journalists}">
-        <h4 th:text="${journalist.name}"></h4>
+        <h4 class="sameLine"th:text="${journalist.name} "></h4>
     </section>
 
     <!--IMAGE HERE -->
     <div class="image">
         <img th:src="@{/news/{id}/content(id=${imageid})}" />
     </div>
+
+    <p th:text="${news.text}">Text</p>
+
+
 
 </body>
 </html>

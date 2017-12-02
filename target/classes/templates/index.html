@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+    <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
@@ -11,7 +11,19 @@
 
     </header>
 
-<p>Test</p>
+    <h3>Latest News:</h3>
+
+    <ul>
+        <li th:each="singleNew: ${news}">
+            <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a> <br>
+            <span th:text="${singleNew.localTime}">Date</span><br>
+            <span th:text="${singleNew.lead}">Lead</span>
+            <div class="image">
+                <img th:src="@{/news/${singleNew.image.id}/content}" />
+            </div>
+        </li>
+    </ul>
+
 
 </body>
 </html>
