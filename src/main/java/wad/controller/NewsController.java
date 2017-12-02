@@ -1,37 +1,22 @@
 package wad.controller;
 
-
-import com.sun.org.apache.regexp.internal.RE;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import wad.domain.Category;
-import wad.domain.Image;
-import wad.domain.Journalist;
 import wad.domain.News;
-import wad.repository.CategoryRepository;
 import wad.repository.ImageRepository;
-import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 import wad.service.CategoryService;
 import wad.service.ImageService;
 import wad.service.JournalistService;
-import wad.service.NewsService;
 
-import javax.annotation.security.PermitAll;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +27,6 @@ public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
     @Autowired
-    private JournalistRepository journalistRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
     private CategoryService categoryService;
     @Autowired
     private JournalistService journalistService;
@@ -54,23 +35,21 @@ public class NewsController {
     @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private NewsService newsService;
 
-    private Category category;
-    private Journalist journalist;
 
     @GetMapping("/")
     public String showFrontPage(Model model) {
 
         Pageable pageable = PageRequest.of(0,5, Sort.Direction.DESC, "localTime");
-        Page<News> news = newsRepository.findAll(pageable);
-        List<Long> imageIds = new ArrayList<>();
-        for (News single: news) {
-            imageIds.add(single.getImage().getId());
-        }
+//        Pageable pageable2 = PageRequest.of(0,5, Sort.Direction.DESC, "localTime");
+
         model.addAttribute("news", newsRepository.findAll(pageable));
-        model.addAttribute("imageids", imageIds);
+
+        List<Long> imageids = new ArrayList<>();
+        for (News news: newsRepository.findAll(pageable)) {
+            imageids.add(news.getImage().getId());
+        }
+        model.addAttribute("imageids", imageids);
         return "index";
     }
 

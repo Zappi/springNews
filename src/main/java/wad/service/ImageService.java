@@ -9,6 +9,8 @@ import wad.repository.ImageRepository;
 import wad.repository.NewsRepository;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+
 @Service
 public class ImageService {
 
@@ -19,7 +21,7 @@ public class ImageService {
 
     public void addNewsToImage(Long id, MultipartFile image) throws IOException {
 
-        Image newImage = new Image();
+        Image newImage = new Image(LocalDateTime.now());
         newImage.setContent(image.getBytes());
         News news = newsRepository.getOne(id);
 

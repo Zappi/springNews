@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +20,11 @@ public class Image extends AbstractPersistable<Long> {
     private byte[] content;
     @OneToOne
     private News news;
+    private LocalDateTime localTime;
+
+    public Image(LocalDateTime localTime) {
+        this.localTime = localTime;
+    }
 
     public void setNews(News news) {
         this.news = news;
@@ -30,5 +36,14 @@ public class Image extends AbstractPersistable<Long> {
 
     public byte[] getContent() {
         return content;
+    }
+
+
+    public LocalDateTime getReleaseTime() {
+        return localTime;
+    }
+
+    public void setReleaseTime(LocalDateTime releaseTime) {
+        this.localTime = releaseTime;
     }
 }

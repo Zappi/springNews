@@ -1,13 +1,16 @@
 package wad.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import wad.domain.Image;
 import wad.domain.News;
 import wad.repository.CategoryRepository;
 import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -19,27 +22,6 @@ public class NewsService {
     private JournalistRepository journalistRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-
-
-    public List<News> getAllNewsInfo() {
-        List<News> news = new ArrayList<>();
-        for (News singleNew: newsRepository.findAll()
-             ) {
-            news.add(singleNew);
-        }
-        return news;
-    }
-
-    public int lastFiveIndex() {
-        List<News> news = newsRepository.findAll();
-        int size = news.size();
-
-        if(size-4 >= 0) {
-            return size - 4;
-        }
-
-        return 0;
-    }
 
 
 }
