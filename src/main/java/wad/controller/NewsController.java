@@ -91,9 +91,16 @@ public class NewsController {
     public String submitNewPieceOfNews(@RequestParam String heading,
                                         @RequestParam String lead, @RequestParam String text,
                                         @RequestParam String journalists, @RequestParam String categories,
-                                        @RequestParam("file") MultipartFile image) throws IOException {
+                                        @RequestParam("file") MultipartFile image, Model model) throws IOException {
 
         LocalDateTime localDateTime = LocalDateTime.now();
+
+        List<String> errors = newsService.validate(heading,lead,text,journalists,categories,image);
+        if(errors.size() > 0) {
+
+            model.addAttribute("errors" , errors);
+            return "createnew";
+        }
 
 
         Long newsId = newsRepository.save(new News(heading, lead, text, localDateTime)).getId();
@@ -104,6 +111,7 @@ public class NewsController {
 
         return "redirect:/news/create";
     }
+
 
     @GetMapping("news/edit/{id}")
     public String editPieceOfNews(@PathVariable Long id, Model model) {
@@ -116,7 +124,15 @@ public class NewsController {
                 @RequestParam String lead, @RequestParam String text,
                 @RequestParam String journalists, @RequestParam String categories,
                 @RequestParam("file") MultipartFile image,
-                @PathVariable Long id) throws IOException {
+                @PathVariable Long id, Model model) throws IOException {
+
+        List<String> errors = newsService.validate(heading,lead,text,journalists,categories,image);
+        if(errors.size() > 0) {
+
+            model.addAttribute("errors" , errors);
+            return "edit";
+        }
+
 
         imageService.addNewsToImage(id, image);
         newsService.handleEdit(id, heading, lead, text);

@@ -9,6 +9,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,10 +23,13 @@ import java.util.List;
 @Entity
 public class News extends AbstractPersistable<Long> {
 
+    @Size(max = 1000)
     private String heading;
+    @Size(max = 5000)
     private String lead;   //ingressi
     @OneToOne
     private Image image;
+    @Size(max = 10000)
     private String text;
     private int pageOpened = 0;
     private LocalDateTime localTime;
