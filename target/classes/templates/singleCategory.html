@@ -2,23 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All news</title>
+    <title>Title</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <style>
-        ul, li {
+        ul {
             list-style-type: none;
         }
+
+        .inlined-header {
+            display: inline;
+        }
+
     </style>
 
 </head>
 <body>
+
 <div class="container">
 
-    <header th:replace="fragments/header :: header"></header>
+    <header th:replace="fragments/header :: header">
+
+    </header>
+
+    <h2 class="inlined-header">News in </h2> <h2 th:text="${categoryName}">name</h2>
 
     <ul>
         <li th:each="singleNew: ${news}">
@@ -26,6 +36,7 @@
             <span th:text="${singleNew.localTime}">Date</span>
         </li>
     </ul>
+
 </div>
 
 

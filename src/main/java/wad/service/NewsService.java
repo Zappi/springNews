@@ -24,4 +24,16 @@ public class NewsService {
     private CategoryRepository categoryRepository;
 
 
+    public void handleEdit(Long id, String heading, String lead, String text) {
+        News edited = newsRepository.getOne(id);
+        edited.setHeading(heading);
+        edited.setLead(lead);
+        edited.setText(text);
+
+        newsRepository.getOne(id).getCategoryList().clear();
+        newsRepository.getOne(id).getJournalistList().clear();
+
+
+        newsRepository.save(edited);
+    }
 }

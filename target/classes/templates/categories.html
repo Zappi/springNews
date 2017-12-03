@@ -2,30 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All news</title>
+    <title>Title</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <style>
-        ul, li {
+
+        ul {
             list-style-type: none;
         }
+
     </style>
 
 </head>
 <body>
+
 <div class="container">
 
-    <header th:replace="fragments/header :: header"></header>
+    <header th:replace="fragments/header :: header">
+    </header>
 
+    <h2>Categories: </h2>
     <ul>
-        <li th:each="singleNew: ${news}">
-            <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
-            <span th:text="${singleNew.localTime}">Date</span>
+        <li th:each="category: ${categories}">
+            <a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}">Heading</a>
         </li>
     </ul>
+
 </div>
 
 

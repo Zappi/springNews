@@ -14,6 +14,7 @@ import wad.repository.NewsRepository;
 import wad.service.CategoryService;
 import wad.service.ImageService;
 import wad.service.JournalistService;
+import wad.service.NewsService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -34,6 +35,8 @@ public class NewsController {
     private ImageRepository imageRepository;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private NewsService newsService;
 
 
 
@@ -84,7 +87,6 @@ public class NewsController {
         return "createnew";
     }
 
-    //Fix this
     @PostMapping("/news/create")
     public String submitNewPieceOfNews(@RequestParam String heading,
                                         @RequestParam String lead, @RequestParam String text,
@@ -100,8 +102,27 @@ public class NewsController {
         categoryService.addNewsToCategories(newsId, categoryService.parseCategoryList(categories));
         journalistService.addNewsToJournalists(newsId, journalistService.parseJournalistList(journalists));
 
-
-
         return "redirect:/news/create";
+    }
+
+    @GetMapping("news/edit/{id}")
+    public String editPieceOfNews(@PathVariable Long id, Model model) {
+        model.addAttribute("news", newsRepository.getOne(id));
+        return "edit";
+    }
+
+    @PostMapping("news/edit/{id}")
+    public String editPieceOfNews(@RequestParam String heading,
+                @RequestParam String lead, @RequestParam String text,
+                @RequestParam String journalists, @RequestParam String categories,
+                @RequestParam("file") MultipartFile image,
+                @PathVariable Long id) throws IOException {
+
+        imageService.addNewsToImage(id, image);
+        newsService.handleEdit(id, heading, lead, text);
+        categoryService.addNewsToCategories(id, categoryService.parseCategoryList(categories));
+        journalistService.addNewsToJournalists(id, journalistService.parseJournalistList(journalists));
+
+        return "redirect:/news";
     }
 }
