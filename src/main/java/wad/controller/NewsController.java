@@ -39,12 +39,11 @@ public class NewsController {
     private NewsService newsService;
 
 
-
+    //Maps the frontpage and shows the 5 newest articles
     @GetMapping("/")
     public String showFrontPage(Model model) {
 
         Pageable pageable = PageRequest.of(0,5, Sort.Direction.DESC, "localTime");
-//        Pageable pageable2 = PageRequest.of(0,5, Sort.Direction.DESC, "localTime");
 
         model.addAttribute("news", newsRepository.findAll(pageable));
 
@@ -57,12 +56,14 @@ public class NewsController {
     }
 
 
+    //Shows all the news
     @GetMapping("/news")
     public String listAllNews(Model model) {
         model.addAttribute("news", newsRepository.findAll());
         return "allNews";
     }
 
+    //Shows a single news article
     @GetMapping("/news/{id}")
     public String viewSingleNews(Model model, @PathVariable Long id) {
         News news = newsRepository.getOne(id);
@@ -75,6 +76,8 @@ public class NewsController {
         return "news";
     }
 
+
+    //Returns and url for a image
     @GetMapping(path= "news/{id}/content", produces="image/png")
     @ResponseBody
     public byte[] getImage(@PathVariable Long id) {

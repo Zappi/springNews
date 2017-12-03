@@ -10,6 +10,7 @@ import wad.repository.CategoryRepository;
 import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,11 +40,11 @@ public class NewsService {
     }
 
 
-    public List<String> validate(String heading, String lead, String text, String journalists, String categories, MultipartFile image) {
+    public List<String> validate(String heading, String lead, String text, String journalists, String categories, MultipartFile image) throws IOException {
         List<String> errors = new ArrayList<>();
 
         if(!validateHeading(heading)) {
-            errors.add("The heading is either empty or too long! (Max length 1000 characters");
+            errors.add("The heading is either empty or too long! (Max length 1000 characters)");
         }
 
         if(!validateLead(lead)) {
@@ -66,7 +67,18 @@ public class NewsService {
             errors.add("Add an image!");
         }
 
+        if(!validateImageSize(image)) {
+            errors.add("Image file is too large!");
+        }
+
         return errors;
+    }
+
+    private boolean validateImageSize(MultipartFile image) throws IOException {
+        if(image.getBytes().length > 1048576) {
+            return false;
+        }
+        return true;
     }
 
     private boolean validateText(String text) {

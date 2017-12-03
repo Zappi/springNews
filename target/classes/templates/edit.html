@@ -26,6 +26,12 @@
 
     </header>
 
+    <ul>
+        <li th:each="error: ${errors}">
+            <p th:text="${error}">error</p>
+        </li>
+    </ul>
+
     <form method="POST" th:action="@{/news/edit/{id}(id=${news.id})}" enctype="multipart/form-data">
         <p>Heading<input type="text" name="heading" th:value="${news.heading}"/></p>
         <p>Lead paragraph<input type="text" name="lead" th:value="${news.lead}"/></p>

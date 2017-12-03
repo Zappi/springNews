@@ -8,7 +8,8 @@ Application for creating and reading news
 
 ### Installing 
 
+```sh
 git clone git@github.com:Zappi/springNews.git
 cd springNews
 mvn spring-boot:run
-
+```

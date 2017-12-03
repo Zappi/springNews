@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 public class Image extends AbstractPersistable<Long> {
 
     @Lob
+    @Size(max = Integer.MAX_VALUE)
     private byte[] content;
     @OneToOne
     private News news;
