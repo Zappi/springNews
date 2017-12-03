@@ -6,4 +6,4 @@ or with how much clicks a single piece of new has had in the previous week.
 
 
 ### Structure
-![databaseDiagram](images/databaseDiagram.pngs)
+![databaseDiagram](images/databaseDiagram.png)
