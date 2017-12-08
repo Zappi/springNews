@@ -10,7 +10,9 @@ import wad.repository.NewsRepository;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Transactional
 @Service
@@ -86,13 +88,13 @@ public class CategoryService {
         return categories;
     }
 
-    public List<Long> getNewsRelatedToCateory(Long categoryId) {
+    public Map<Long, String> getNewsRelatedToCateory(Long categoryId) {
         List<News> news = categoryRepository.getOne(categoryId).getNewsList();
-        List<Long> id = new ArrayList<>();
-        for (News newsId: news) {
-            id.add(newsId.getId());
+        HashMap<Long, String> allNews = new HashMap<>();
+        for (News foundNews : news) {
+          allNews.put(foundNews.getId(), foundNews.getHeading());
         }
 
-        return id;
+        return allNews;
     }
 }

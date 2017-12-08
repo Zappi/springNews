@@ -41,7 +41,7 @@ public class CategoryController {
     public String showSingleCategory(@PathVariable Long id, Model model) {
         String categoryName = categoryRepository.getOne(id).getName();
         model.addAttribute("categoryName", categoryName);
-        model.addAttribute("news", categoryService.getNewsRelatedToCateory(id));
+        model.addAttribute("newsMap", categoryService.getNewsRelatedToCateory(id));
         return "singleCategory";
     }
 

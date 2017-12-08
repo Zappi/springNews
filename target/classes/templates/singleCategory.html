@@ -31,8 +31,8 @@
 
     <ul>
 
-        <li th:each="singleNew : ${news}">
-            <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
+        <li th:each="entry : ${newsMap}">
+            <a th:href="@{/news/{id}(id=${entry.key})}" th:text="${entry.value}">Heading</a>
         </li>
 
     </ul>
