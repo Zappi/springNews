@@ -32,7 +32,7 @@
     <ul>
 
         <li th:each="singleNew : ${news}">
-            <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
+            <a th:href="@{/news/{id}(id=${singleNew})}" th:text="${singleNew}">Heading</a>
         </li>
 
     </ul>

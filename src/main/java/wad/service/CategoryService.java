@@ -86,8 +86,13 @@ public class CategoryService {
         return categories;
     }
 
-    public List<News> getNewsRelatedToCateory(Long categoryId) {
-        List<News> newsId = categoryRepository.getOne(categoryId).getNewsList();
-        return newsId;
+    public List<Long> getNewsRelatedToCateory(Long categoryId) {
+        List<News> news = categoryRepository.getOne(categoryId).getNewsList();
+        List<Long> id = new ArrayList<>();
+        for (News newsId: news) {
+            id.add(newsId.getId());
+        }
+
+        return id;
     }
 }
