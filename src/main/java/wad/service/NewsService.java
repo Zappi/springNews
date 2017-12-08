@@ -71,7 +71,18 @@ public class NewsService {
             errors.add("Image file is too large!");
         }
 
+        if(!validateImageType(image)) {
+            errors.add("Image file type must be png!");
+        }
+
         return errors;
+    }
+
+    private boolean validateImageType(MultipartFile file) {
+        if(!file.getContentType().contains("png")) {
+            return false;
+        }
+        return true;
     }
 
     private boolean validateImageSize(MultipartFile image) throws IOException {

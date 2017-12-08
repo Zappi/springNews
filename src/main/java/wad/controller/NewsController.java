@@ -82,7 +82,7 @@ public class NewsController {
 
 
     //Returns and url for a image
-    @GetMapping(path= "news/{id}/content", produces="image/png")
+    @GetMapping(path="/news/{id}/content", produces="image/png")
     @ResponseBody
     @Transactional
     public byte[] getImage(@PathVariable Long id) {
@@ -122,13 +122,13 @@ public class NewsController {
     }
 
 
-    @GetMapping("news/edit/{id}")
+    @GetMapping("/news/edit/{id}")
     public String editPieceOfNews(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepository.getOne(id));
         return "edit";
     }
 
-    @PostMapping("news/edit/{id}")
+    @PostMapping("/news/edit/{id}")
     public String editPieceOfNews(@RequestParam String heading,
                 @RequestParam String lead, @RequestParam String text,
                 @RequestParam String journalists, @RequestParam String categories,
@@ -152,7 +152,7 @@ public class NewsController {
     }
 
     //Shows now only most clicked of all the time
-    @GetMapping("news/trending")
+    @GetMapping("/news/trending")
     public String getLastWeeksMostReadNews(Model model) {
         Pageable pageable = PageRequest.of(0,10, Sort.Direction.DESC, "pageOpened");
         model.addAttribute("news", newsRepository.findAll(pageable));

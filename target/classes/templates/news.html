@@ -37,7 +37,7 @@
 
         <h4 class="inline-block">Categories:</h4>
         <section class="inline-block" th:each="category: ${categories}">
-        <h5 class="sameLine"><a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}">Category</a></h5>
+        <h5 class="sameLine"><a th:href="@{/news/categories/{id}(id=${category.id})}" th:text="${category.name}">Category</a></h5>
     </section>
         <br>
 
