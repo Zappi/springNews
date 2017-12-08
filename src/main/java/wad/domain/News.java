@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
@@ -28,6 +29,7 @@ public class News extends AbstractPersistable<Long> {
     @Size(max = 5000)
     private String lead;   //ingressi
     @OneToOne
+    @Lob
     private Image image;
     @Size(max = 10000)
     private String text;

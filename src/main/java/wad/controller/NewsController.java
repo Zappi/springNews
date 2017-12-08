@@ -138,6 +138,7 @@ public class NewsController {
         model.addAttribute("news", newsRepository.getOne(id));
         return "edit";
     }
+
     @Transactional
     @PostMapping("/news/edit/{id}")
     public String editPieceOfNews(@RequestParam String heading,

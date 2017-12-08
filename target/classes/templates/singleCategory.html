@@ -30,10 +30,12 @@
     <h2> News in </h2> <h2 th:text="${categoryName}">name</h2>
 
     <ul>
+
         <li th:each="singleNew: ${news}">
             <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
             <span th:text="${singleNew.localTime}">Date</span>
         </li>
+
     </ul>
 </div>
 
