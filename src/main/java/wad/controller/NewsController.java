@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Transactional
 @Controller
 public class NewsController {
 
@@ -41,6 +41,7 @@ public class NewsController {
 
 
     //Maps the frontpage and shows the 5 newest articles
+
     @GetMapping("/")
     public String showFrontPage(Model model) {
 

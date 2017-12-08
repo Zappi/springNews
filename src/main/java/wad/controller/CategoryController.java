@@ -12,8 +12,9 @@ import wad.repository.NewsRepository;
 import wad.service.CategoryService;
 import wad.service.NewsService;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Transactional
 @Controller
 public class CategoryController {
 
