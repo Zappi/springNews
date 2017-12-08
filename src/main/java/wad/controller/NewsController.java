@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import wad.domain.Image;
 import wad.domain.News;
 import wad.repository.ImageRepository;
 import wad.repository.NewsRepository;
@@ -81,12 +86,18 @@ public class NewsController {
     }
 
 
-    //Returns and url for a image
+
     @GetMapping(path="/news/{id}/content", produces="image/png")
     @ResponseBody
     @Transactional
-    public byte[] getImage(@PathVariable Long id) {
-        return imageRepository.getOne(id).getContent();
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
+        Image fo = imageRepository.getOne(id);
+
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType(fo.getContentType()));
+        headers.setContentLength(fo.getContentLength());
+
+        return new ResponseEntity<>(fo.getContent(), headers, HttpStatus.CREATED);
     }
 
 

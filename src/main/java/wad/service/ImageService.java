@@ -22,7 +22,18 @@ public class ImageService {
     public void addNewsToImage(Long id, MultipartFile image) throws IOException {
 
         Image newImage = new Image(LocalDateTime.now());
-        newImage.setContent(image.getBytes());
+        newImage.setNews(newsRepository.getOne(id));
+
+        try {
+            newImage.setContent(image.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        newImage.setContentLength(image.getSize());
+        newImage.setContentType(image.getContentType());
+        newImage.setName(image.getName());
+
         News news = newsRepository.getOne(id);
 
         imageRepository.save(newImage).setNews(news);

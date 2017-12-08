@@ -57,7 +57,9 @@
     <p th:text="${news.text}">Text</p>
 
 
-    <footer><a th:href="@{/news/edit/{id}(id=${news.id})}">Edit</a></footer>
+    <footer>
+        <a th:href="@{/news/edit/{id}(id=${news.id})}">Edit</a>
+    </footer>
 
     </div>
 
