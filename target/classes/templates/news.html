@@ -14,12 +14,14 @@
             height: 400px;
         }
 
-        .sameLine {
-            display: inline;
-        }
         ul, li {
             list-style-type: none;
         }
+
+        .inline-block {
+            display: inline-block;
+        }
+
     </style>
 
 </head>
@@ -33,19 +35,25 @@
     <h4 th:text="${news.lead}">Leading paragraph</h4>
     <p th:text="${news.localTime}">Release Time</p>
 
-    <section th:each="category: ${categories}">
-        <h4 class="sameLine"><a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}">Category</a></h4>
+        <h4 class="inline-block">Categories:</h4>
+        <section class="inline-block" th:each="category: ${categories}">
+        <h5 class="sameLine"><a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}">Category</a></h5>
     </section>
+        <br>
 
-    <section th:each="journalist: ${journalists}">
-        <h4 class="sameLine"th:text="${journalist.name} "></h4>
+        <h4> Journalists: </h4>
+    <section class="inline-block" th:each="journalist: ${journalists}">
+        <h5 th:text="${journalist.name} "></h5>
     </section>
+        <br>
 
     <!--IMAGE HERE -->
     <div class="image">
         <img th:src="@{/news/{id}/content(id=${imageid})}" />
     </div>
 
+        <br>
+        <br>
     <p th:text="${news.text}">Text</p>
 
 

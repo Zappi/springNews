@@ -29,7 +29,7 @@
     <h2>Categories: </h2>
     <ul>
         <li th:each="category: ${categories}">
-            <a th:href="@{/categories/{id}(id=${category.id})}" th:text="${category.name}">Heading</a>
+            <a th:href="@{/news/categories/{id}(id=${category.id})}" th:text="${category.name}">Heading</a>
         </li>
     </ul>
 

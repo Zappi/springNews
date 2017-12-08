@@ -13,8 +13,8 @@
             list-style-type: none;
         }
 
-        .inlined-header {
-            display: inline;
+        h2 {
+            display: inline-block;
         }
 
     </style>
@@ -26,9 +26,8 @@
 
     <div th:replace="fragments/header :: nav"></div>
 
-    </header>
 
-    <h2 class="inlined-header">News in </h2> <h2 th:text="${categoryName}">name</h2>
+    <h2> News in </h2> <h2 th:text="${categoryName}">name</h2>
 
     <ul>
         <li th:each="singleNew: ${news}">
