@@ -8,9 +8,11 @@ import wad.repository.CategoryRepository;
 import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class CategoryService {
 
