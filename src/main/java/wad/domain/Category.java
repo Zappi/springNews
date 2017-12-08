@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ public class Category extends AbstractPersistable<Long> {
 
     private String name;
     @ManyToMany(mappedBy = "categoryList")
-    List<News> newsList;
+    @Lob
+    private List<News> newsList;
 
     public Category(String name) {
         this.name = name;
