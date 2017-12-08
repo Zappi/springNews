@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class Category extends AbstractPersistable<Long> {
         this.name = name;
     }
 
+    @Transactional
     public List<News> getNewsList() {
         return newsList;
     }

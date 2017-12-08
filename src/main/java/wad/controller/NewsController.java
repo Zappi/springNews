@@ -135,9 +135,8 @@ public class NewsController {
     @Transactional
     @GetMapping("/news/edit/{id}")
     public String editPieceOfNews(@PathVariable Long id, Model model) {
-        //RETURNS IN HEROKU UNABLE TO GET LOB STREAM ALL THE TIME MAYBE BECAUSE OF THE IMAGE TRY TO FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        //model.addAttribute("news", newsRepository.getOne(id));
+        model.addAttribute("news", newsRepository.getOne(id));
         return "edit";
     }
 

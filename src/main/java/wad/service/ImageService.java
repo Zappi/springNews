@@ -8,6 +8,7 @@ import wad.domain.News;
 import wad.repository.ImageRepository;
 import wad.repository.NewsRepository;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class ImageService {
     @Autowired
     private NewsRepository newsRepository;
 
+    @Transactional
     public void addNewsToImage(Long id, MultipartFile image) throws IOException {
 
         Image newImage = new Image(LocalDateTime.now());
