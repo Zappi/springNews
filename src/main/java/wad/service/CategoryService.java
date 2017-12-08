@@ -37,6 +37,7 @@ public class CategoryService {
             } else {
                 if(category.charAt(x) == ' ') {
                     continue;
+
                 }
                 categoryForList += category.charAt(x);
             }
@@ -83,5 +84,10 @@ public class CategoryService {
 
         }
         return categories;
+    }
+
+    public List<News> getNewsRelatedToCateory(Long categoryId) {
+        List<News> newsId = categoryRepository.getOne(categoryId).getNewsList();
+        return newsId;
     }
 }

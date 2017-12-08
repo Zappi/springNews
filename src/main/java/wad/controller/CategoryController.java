@@ -40,9 +40,8 @@ public class CategoryController {
     @GetMapping("/news/categories/{id}")
     public String showSingleCategory(@PathVariable Long id, Model model) {
         String categoryName = categoryRepository.getOne(id).getName();
-        List<News> news = categoryRepository.getOne(id).getNewsList();
         model.addAttribute("categoryName", categoryName);
-        model.addAttribute("news", news);
+        model.addAttribute("news", categoryService.getNewsRelatedToCateory(id));
         return "singleCategory";
     }
 
