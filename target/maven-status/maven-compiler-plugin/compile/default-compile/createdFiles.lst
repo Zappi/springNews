@@ -5,6 +5,7 @@ wad/repository/NewsRepository.class
 wad/service/CategoryService.class
 wad/domain/Image.class
 wad/SpringNewsApplication.class
+wad/domain/EditedNews.class
 wad/controller/CategoryController.class
 wad/controller/DefaultController.class
 wad/domain/Category.class

@@ -22,10 +22,6 @@ public class NewsService {
 
     @Autowired
     private NewsRepository newsRepository;
-    @Autowired
-    private JournalistRepository journalistRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @Transactional
     public void handleEdit(Long id, String heading, String lead, String text) {

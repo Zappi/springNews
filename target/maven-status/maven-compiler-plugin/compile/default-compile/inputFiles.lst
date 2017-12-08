@@ -2,6 +2,7 @@
 /home/jtamland/Documents/springNews/src/main/java/wad/service/NewsService.java
 /home/jtamland/Documents/springNews/src/main/java/wad/configuration/ProductionConfiguration.java
 /home/jtamland/Documents/springNews/src/main/java/wad/SpringNewsApplication.java
+/home/jtamland/Documents/springNews/src/main/java/wad/domain/EditedNews.java
 /home/jtamland/Documents/springNews/src/main/java/wad/controller/DefaultController.java
 /home/jtamland/Documents/springNews/src/main/java/wad/repository/CategoryRepository.java
 /home/jtamland/Documents/springNews/src/main/java/wad/repository/JournalistRepository.java

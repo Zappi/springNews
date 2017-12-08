@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: wad.serviceTests.NewServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.371 s <<< FAILURE! - in wad.serviceTests.NewServiceTest
+handleEditNews(wad.serviceTests.NewServiceTest)  Time elapsed: 0.011 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource': Could not bind properties to 'HikariDataSource': prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.username' to java.lang.String
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource': Could not bind properties to 'HikariDataSource': prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.username' to java.lang.String
+Caused by: org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.username' to java.lang.String
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'JDBC_DATABASE_USERNAME' in value "${JDBC_DATABASE_USERNAME}"
+
