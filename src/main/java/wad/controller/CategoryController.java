@@ -27,13 +27,13 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
 
-    @GetMapping("categories")
+    @GetMapping("news/categories")
     public String showCategories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         return "categories";
     }
 
-    @GetMapping("categories/{id}")
+    @GetMapping("news/categories/{id}")
     public String showSingleCategory(@PathVariable Long id, Model model) {
         String categoryName = categoryRepository.getOne(id).getName();
         List<News> news = categoryRepository.getOne(id).getNewsList();

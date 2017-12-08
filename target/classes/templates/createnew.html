@@ -31,9 +31,6 @@
             <p th:text="${error}">error</p>
         </li>
     </ul>
-
-    <section th:text="${success}">Message</section>
-
     <form method="POST" th:action="@{/news/create}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="heading">Heading: </label>

@@ -60,8 +60,11 @@ public class NewsController {
     //Shows all the news
     @GetMapping("/news")
     public String listAllNews(Model model) {
-        Pageable pageable = PageRequest.of(0, newsRepository.findAll().size(), Sort.Direction.DESC, "localTime");
-        model.addAttribute("news", newsRepository.findAll(pageable));
+        if(newsRepository.findAll().size() != 0) {
+            Pageable pageable = PageRequest.of(0, newsRepository.findAll().size(), Sort.Direction.DESC, "localTime");
+            model.addAttribute("news", newsRepository.findAll(pageable));
+            return "allNews";
+        }
         return "allNews";
     }
 
