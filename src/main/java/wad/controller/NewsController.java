@@ -47,6 +47,7 @@ public class NewsController {
 
         model.addAttribute("news", newsRepository.findAll(pageable));
 
+
         List<Long> imageids = new ArrayList<>();
         for (News news: newsRepository.findAll(pageable)) {
             imageids.add(news.getImage().getId());
