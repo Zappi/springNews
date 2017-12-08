@@ -14,7 +14,8 @@ import wad.service.NewsService;
 
 import javax.transaction.Transactional;
 import java.util.List;
-@Transactional
+
+
 @Controller
 public class CategoryController {
 
@@ -40,7 +41,6 @@ public class CategoryController {
         List<News> news = categoryRepository.getOne(id).getNewsList();
         model.addAttribute("categoryName", categoryName);
         model.addAttribute("news", news);
-
         return "singleCategory";
     }
 

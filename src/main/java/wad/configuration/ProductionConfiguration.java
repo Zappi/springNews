@@ -18,7 +18,4 @@ public class ProductionConfiguration {
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
-
-
-
 }
