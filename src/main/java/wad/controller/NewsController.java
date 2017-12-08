@@ -137,6 +137,7 @@ public class NewsController {
     public String editPieceOfNews(@PathVariable Long id, Model model) {
 
         model.addAttribute("news", newsRepository.getOne(id));
+        model.addAttribute("newsid", id);
         return "edit";
     }
 

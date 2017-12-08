@@ -33,7 +33,7 @@
     </ul>
 
 
-    <form method="POST" th:action="@{/news/edit/{id}(id=${news.id})}" enctype="multipart/form-data">
+    <form method="POST" th:action="@{/news/edit/{id}(id=${id})}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="heading">Heading: </label>
             <input type="text" class="form-control" name="heading" th:value="${news.heading}">
@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <label for="authors">Authors: </label>
-            <input type="text" name="journalists" class="form-control">
+            <input type="text" name="journalists"class="form-control">
         </div>
         <div class="form-group">
             <label for="categories">Categories: </label>
