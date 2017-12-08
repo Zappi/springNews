@@ -22,9 +22,8 @@
 
 <div class="container">
 
-<header th:replace="fragments/header :: header">
-
-</header>
+    <div th:replace="fragments/header :: nav">
+    </div>
 
 
     <ul>
@@ -32,17 +31,35 @@
             <p th:text="${error}">error</p>
         </li>
     </ul>
-
     <form method="POST" th:action="@{/news/create}" enctype="multipart/form-data">
-        <p>Heading<input type="text" name="heading"/></p>
-        <p>Lead paragraph<input type="text" name="lead"/></p>
-        <p>Text<textarea rows="10" cols="50" name="text"> Enter the text here...</textarea></p>
-        <p>Authors<input type="text" name="journalists"/></p>
-        <p>Categories<input type="text" name="categories"/></p>
-        <input type="file" name="file" id="file"/>
-
-        <input type="submit" value="Send"/>
+        <div class="form-group">
+            <label for="heading">Heading: </label>
+            <input type="text" class="form-control" name="heading">
+        </div>
+        <div class="form-group">
+            <label for="leading">Lead paragraph:</label>
+            <input type="text" class="form-control" name="lead">
+        </div>
+        <div class="form-group">
+            <label for="text">Text: </label>
+            <textarea class="form-control" rows="10" name="text"> Enter the text here...</textarea>
+        </div>
+        <div class="form-group">
+            <label for="authors">Authors: </label>
+            <input type="text" name="journalists"  class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="categories">Categories: </label>
+            <input type="text" name="categories"  class="form-control">
+        </div>
+        <div class="btn">
+            <input type="file" name="file" id="file"/>
+        </div>
+        <div class="btn">
+            <input type="submit" value="Send"/>
+        </div>
     </form>
+
 </div>
 
 </body>

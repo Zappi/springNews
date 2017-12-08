@@ -8,46 +8,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            border: 1px solid #e7e7e7;
-            background-color: #f3f3f3;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: #666;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #ddd;
-        }
-
-    </style>
 
 </head>
 <body>
 
-    <header>
-        <ul>
-            <!-- Add links at some point -->
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/news}">News</a></li>
-            <li><a th:href="@{/news/create}">Create new</a></li>
-            <li><a th:href="@{/categories}">Categories</a></li>
-        </ul>
-    </header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+
+                <li>
+                    <a class="nav-link" th:href="@{/news/}">All News</a>
+                </li>
+
+                <li>
+                    <a class="nav-link" th:href="@{/news/create}">Create New</a>
+                </li>
+
+                <li>
+                    <a class="nav-link" th:href="@{news/categories}">Categories</a>
+                </li>
+
+                <li>
+                    <a class="nav-link" th:href="@{/news/trending}">Trending</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
 </body>

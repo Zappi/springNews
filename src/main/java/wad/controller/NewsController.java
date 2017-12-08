@@ -59,7 +59,8 @@ public class NewsController {
     //Shows all the news
     @GetMapping("/news")
     public String listAllNews(Model model) {
-        model.addAttribute("news", newsRepository.findAll());
+        Pageable pageable = PageRequest.of(0, newsRepository.findAll().size(), Sort.Direction.DESC, "localTime");
+        model.addAttribute("news", newsRepository.findAll(pageable));
         return "allNews";
     }
 
@@ -67,12 +68,12 @@ public class NewsController {
     @GetMapping("/news/{id}")
     public String viewSingleNews(Model model, @PathVariable Long id) {
         News news = newsRepository.getOne(id);
+
         news.incrementPageOpened();
         model.addAttribute("news", news);
         model.addAttribute("categories", categoryService.getCategories(news.getCategoryList()));
         model.addAttribute("journalists", journalistService.getJournalists(news.getJournalistList()));
         model.addAttribute("imageid", news.getImage().getId());
-        System.out.println(news.getImage().getId());
         return "news";
     }
 
@@ -111,6 +112,7 @@ public class NewsController {
         imageService.addNewsToImage(newsId, image);
         categoryService.addNewsToCategories(newsId, categoryService.parseCategoryList(categories));
         journalistService.addNewsToJournalists(newsId, journalistService.parseJournalistList(journalists));
+        model.addAttribute("success", "Created successfully!");
 
         return "redirect:/news/create";
     }
@@ -143,5 +145,14 @@ public class NewsController {
         journalistService.addNewsToJournalists(id, journalistService.parseJournalistList(journalists));
 
         return "redirect:/news";
+    }
+
+    //Shows now only most clicked of all the time
+    @GetMapping("news/trending")
+    public String getLastWeeksMostReadNews(Model model) {
+        Pageable pageable = PageRequest.of(0,10, Sort.Direction.DESC, "pageOpened");
+        model.addAttribute("news", newsRepository.findAll(pageable));
+
+        return "trending";
     }
 }

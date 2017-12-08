@@ -20,6 +20,8 @@
 
     <div th:replace="fragments/header :: nav"></div>
 
+    <h1>Most clicked news in the previous week</h1>
+
     <ul>
         <li th:each="singleNew: ${news}">
             <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>

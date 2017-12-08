@@ -18,7 +18,7 @@
 <body>
 <div class="container">
 
-    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/header :: nav"></div>
 
     <ul>
         <li th:each="singleNew: ${news}">
