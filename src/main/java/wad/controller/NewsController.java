@@ -136,7 +136,7 @@ public class NewsController {
     @GetMapping("/news/edit/{id}")
     public String editPieceOfNews(@PathVariable Long id, Model model) {
 
-        model.addAttribute("news", newsRepository.getOne(id));
+        model.addAttribute("news", newsService.handleEdit(newsRepository.getOne(id)));
         model.addAttribute("newsid", id);
         return "edit";
     }

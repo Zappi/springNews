@@ -135,4 +135,8 @@ public class NewsService {
         }
         return true;
     }
+
+    public News handleEdit(News news) {
+        return new News(news.getHeading(),news.getLead(),news.getText(), news.getReleaseTime());
+    }
 }
