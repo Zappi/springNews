@@ -38,7 +38,6 @@ public class ImageService {
 
         imageRepository.save(newImage).setNews(news);
         newsRepository.getOne(id).setImage(newImage);
-
     }
 
 }
