@@ -1,6 +1,8 @@
 # springNews
 
 [![Build Status](https://travis-ci.org/Zappi/springNews.svg?branch=master)](https://travis-ci.org/Zappi/springNews)
+[![codecov](https://codecov.io/gh/Zappi/springNews/branch/master/graph/badge.svg)](https://codecov.io/gh/Zappi/springNews)
+
 
 Application for creating and reading news
 
