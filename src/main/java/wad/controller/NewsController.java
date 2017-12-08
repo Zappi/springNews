@@ -132,13 +132,13 @@ public class NewsController {
         return "redirect:/news/create";
     }
 
-
+    @Transactional
     @GetMapping("/news/edit/{id}")
     public String editPieceOfNews(@PathVariable Long id, Model model) {
         model.addAttribute("news", newsRepository.getOne(id));
         return "edit";
     }
-
+    @Transactional
     @PostMapping("/news/edit/{id}")
     public String editPieceOfNews(@RequestParam String heading,
                 @RequestParam String lead, @RequestParam String text,

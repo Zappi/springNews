@@ -15,7 +15,7 @@ import wad.service.NewsService;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
+@Transactional
 @Controller
 public class CategoryController {
 
@@ -35,6 +35,7 @@ public class CategoryController {
         return "categories";
     }
 
+    @Transactional
     @GetMapping("/news/categories/{id}")
     public String showSingleCategory(@PathVariable Long id, Model model) {
         String categoryName = categoryRepository.getOne(id).getName();

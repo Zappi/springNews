@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class Image extends AbstractPersistable<Long> {
 
     @OneToOne
+    @JoinColumn
     private News news;
 
     @NotBlank
