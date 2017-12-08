@@ -10,6 +10,7 @@ import wad.repository.CategoryRepository;
 import wad.repository.JournalistRepository;
 import wad.repository.NewsRepository;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class NewsService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-
+    @Transactional
     public void handleEdit(Long id, String heading, String lead, String text) {
         News edited = newsRepository.getOne(id);
         edited.setHeading(heading);

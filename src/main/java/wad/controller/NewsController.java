@@ -106,6 +106,7 @@ public class NewsController {
         return "createnew";
     }
 
+    @Transactional
     @PostMapping("/news/create")
     public String submitNewPieceOfNews(@RequestParam String heading,
                                         @RequestParam String lead, @RequestParam String text,

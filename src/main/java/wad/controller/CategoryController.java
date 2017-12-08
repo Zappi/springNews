@@ -12,6 +12,7 @@ import wad.repository.NewsRepository;
 import wad.service.CategoryService;
 import wad.service.NewsService;
 
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -39,9 +40,9 @@ public class CategoryController {
     @GetMapping("/news/categories/{id}")
     public String showSingleCategory(@PathVariable Long id, Model model) {
         String categoryName = categoryRepository.getOne(id).getName();
-        List<News> news = categoryRepository.getOne(id).getNewsList();
+        //List<News> news = categoryRepository.getOne(id).getNewsList();
         model.addAttribute("categoryName", categoryName);
-        model.addAttribute("news", news);
+        //model.addAttribute("news", news);
         return "singleCategory";
     }
 
