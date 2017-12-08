@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class Category extends AbstractPersistable<Long> {
 
     private String name;
     @ManyToMany(mappedBy = "categoryList")
-    @Lob
     private List<News> newsList;
 
     public Category(String name) {
@@ -43,5 +41,25 @@ public class Category extends AbstractPersistable<Long> {
 
     public void setNewsList(List<News> newsList) {
         this.newsList = newsList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        if (!super.equals(o)) return false;
+
+        Category category = (Category) o;
+
+        if (getName() != null ? !getName().equals(category.getName()) : category.getName() != null) return false;
+        return getNewsList() != null ? getNewsList().equals(category.getNewsList()) : category.getNewsList() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getNewsList() != null ? getNewsList().hashCode() : 0);
+        return result;
     }
 }
