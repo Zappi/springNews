@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${news.heading}">heading</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style>
+        img {
+            width: 400px;
+            height: 400px;
+        }
+
+        ul, li {
+            list-style-type: none;
+        }
+
+        .inline-block {
+            display: inline-block;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container contanier-fluid">
+
+        <div th:replace="fragments/header :: nav"></div>
+
+    <h2 th:text="${news.heading}">Heading</h2>
+
+    <h4 th:text="${news.lead}">Leading paragraph</h4>
+    <p th:text="${news.localTime}">Release Time</p>
+
+        <h4 class="inline-block">Categories:</h4>
+        <section class="inline-block" th:each="category: ${categories}">
+        <h5 class="sameLine"><a th:href="@{/news/categories/{id}(id=${category.id})}" th:text="${category.name}">Category</a></h5>
+    </section>
+        <br>
+
+        <h4> Journalists: </h4>
+    <section class="inline-block" th:each="journalist: ${journalists}">
+        <h5 th:text="${journalist.name} "></h5>
+    </section>
+        <br>
+
+    <!--IMAGE HERE -->
+    <div class="image">
+        <img th:src="@{/news/{id}/content(id=${imageid})}" />
+    </div>
+
+        <br>
+    <p th:text="${news.text}">Text</p>
+
+
+    <footer>
+        <a th:href="@{/news/edit/{id}(id=${news.id})}">Edit</a>
+    </footer>
+
+    </div>
+
+</body>
+</html>

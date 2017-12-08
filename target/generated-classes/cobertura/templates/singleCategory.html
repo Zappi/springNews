@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${categoryName}">categoryName</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        h2 {
+            display: inline-block;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="fragments/header :: nav"></div>
+
+
+    <h2> News in </h2> <h2 th:text="${categoryName}">name</h2>
+
+    <ul>
+
+        <li th:each="entry : ${newsMap}">
+            <a th:href="@{/news/{id}(id=${entry.key})}" th:text="${entry.value}">Heading</a>
+        </li>
+
+    </ul>
+</div>
+
+
+</body>
+</html>

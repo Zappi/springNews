@@ -1,12 +1,10 @@
-package wad.serviceTests;
+package wad.springNews.serviceTests;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import wad.domain.News;
 import wad.repository.NewsRepository;
@@ -16,11 +14,9 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles({"production"})
-public class NewServiceTest {
+public class NewsServiceTest {
 
     @Autowired
     private NewsRepository newsRepository;
@@ -47,3 +43,4 @@ public class NewServiceTest {
         assertEquals("Finland won 7-1", newsRepository.getOne(testId).getLead());
     }
 }
+

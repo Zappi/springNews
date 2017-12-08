@@ -6,3 +6,6 @@ deploy:
   app: wepaspringnews
   on:
     repo: Zappi/springNews
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
