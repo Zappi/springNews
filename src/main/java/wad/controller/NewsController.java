@@ -16,6 +16,7 @@ import wad.service.ImageService;
 import wad.service.JournalistService;
 import wad.service.NewsService;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class NewsController {
     //Returns and url for a image
     @GetMapping(path= "news/{id}/content", produces="image/png")
     @ResponseBody
+    @Transactional
     public byte[] getImage(@PathVariable Long id) {
         return imageRepository.getOne(id).getContent();
     }
