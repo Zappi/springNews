@@ -80,6 +80,17 @@ public class JournalistService {
         return journalists;
     }
 
-    public void deleteJournalistRelationToNews(Long id) {
+    public void deleteJournalistRelationToNews(String newsHeading) {
+        List<Journalist> allJournalists = journalistRepository.findAll();
+        for (Journalist journalist: allJournalists) {
+            for (News news: journalist.getNewsList()) {
+                if(news.getHeading().equals(newsHeading)) {
+                    journalist.getNewsList().remove(news);
+                    if(journalist.getNewsList().size() == 1) {
+                        journalistRepository.deleteById(journalist.getId());
+                    }
+                }
+            }
+        }
     }
 }

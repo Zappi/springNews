@@ -107,7 +107,7 @@ public class NewsController {
     public String removeSingleNews(@PathVariable Long id) {
         News news = newsRepository.getOne(id);
         categoryService.deleteCategoryRelationToNews(news.getHeading());
-        //journalistService.deleteJournalistRelationToNews(news.getJournalistList());
+        journalistService.deleteJournalistRelationToNews(news.getHeading());
         imageRepository.deleteById(news.getImage().getId());
         newsRepository.deleteById(id);
         return "redirect:/news";
