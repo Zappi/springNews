@@ -60,7 +60,7 @@ public class CategoryService {
 
         for (String categoryName : categories) {
 
-            Category existingCategory = categoryRepository.findByName(categoryName);
+            Category existingCategory = categoryRepository.findByName(categoryName.toLowerCase());
 
             if (existingCategory != null) {
                 existingCategory.getNewsList().add(news);
@@ -69,7 +69,7 @@ public class CategoryService {
                 categoryRepository.save(existingCategory);
             } else {
 
-                Category category = new Category(categoryName);
+                Category category = new Category(categoryName.toLowerCase());
                 category.getNewsList().add(news);
                 categoryRepository.save(category);
 
@@ -83,7 +83,6 @@ public class CategoryService {
         List<Category> categories = new ArrayList<>();
         for (Category category: categoryList){
             categories.add(categoryRepository.getOne(category.getId()));
-
         }
         return categories;
     }
@@ -96,5 +95,19 @@ public class CategoryService {
         }
 
         return allNews;
+    }
+
+    public void deleteCategoryRelationToNews(String newsHeading) {
+        List<Category> allCategories = categoryRepository.findAll();
+        for (Category category: allCategories) {
+            for (News news: category.getNewsList()) {
+                if(news.getHeading().equals(newsHeading)) {
+                    category.getNewsList().remove(news);
+                    if(category.getNewsList().size() == 1) {
+                        categoryRepository.deleteById(category.getId());
+                    }
+                }
+            }
+        }
     }
 }

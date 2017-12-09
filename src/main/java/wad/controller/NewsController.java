@@ -66,8 +66,10 @@ public class NewsController {
     //Shows all the news
     @GetMapping("/news")
     public String listAllNews(Model model) {
+        if(newsRepository.findAll().size() > 0) {
             Pageable pageable = PageRequest.of(0, newsRepository.findAll().size(), Sort.Direction.DESC, "localTime");
             model.addAttribute("news", newsRepository.findAll(pageable));
+        }
         return "allNews";
     }
 
@@ -99,6 +101,17 @@ public class NewsController {
         return new ResponseEntity<>(fo.getContent(), headers, HttpStatus.CREATED);
     }
 
+
+    @Transactional
+    @PostMapping("/news/delete/{id}")
+    public String removeSingleNews(@PathVariable Long id) {
+        News news = newsRepository.getOne(id);
+        categoryService.deleteCategoryRelationToNews(news.getHeading());
+        //journalistService.deleteJournalistRelationToNews(news.getJournalistList());
+        imageRepository.deleteById(news.getImage().getId());
+        newsRepository.deleteById(id);
+        return "redirect:/news";
+    }
 
     @GetMapping("/news/create")
         public String createNewPieceOfNews() {

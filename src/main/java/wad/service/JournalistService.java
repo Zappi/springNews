@@ -79,4 +79,7 @@ public class JournalistService {
         }
         return journalists;
     }
+
+    public void deleteJournalistRelationToNews(Long id) {
+    }
 }
