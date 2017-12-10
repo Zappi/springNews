@@ -7,10 +7,14 @@ wad/domain/Image.class
 wad/SpringNewsApplication.class
 wad/domain/EditedNews.class
 wad/controller/CategoryController.class
+wad/domain/Account.class
 wad/controller/DefaultController.class
+wad/repository/AccountRepository.class
 wad/domain/Category.class
 wad/service/NewsService.class
 wad/configuration/ProductionConfiguration.class
+wad/configuration/SecurityConfiguration.class
+wad/service/CustomUserDetailsService.class
 wad/controller/NewsController.class
 wad/domain/Journalist.class
 wad/service/JournalistService.class

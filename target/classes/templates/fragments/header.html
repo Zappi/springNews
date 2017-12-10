@@ -29,16 +29,17 @@
                 </li>
 
                 <li>
-                    <a class="nav-link" th:href="@{/news/create}">Create New</a>
-                </li>
-
-                <li>
                     <a class="nav-link" th:href="@{/news/categories}">Categories</a>
                 </li>
 
                 <li>
                     <a class="nav-link" th:href="@{/news/trending}">Trending</a>
                 </li>
+
+                <li>
+                    <a class="nav-link" th:href="@{/news/create}">Create New</a>
+                </li>
+
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <li>
                         <span class="nav-link" sec:authentication="name">Username</span> <form class="nav-link" method="post" action="#" th:action="@{/logout}"><input  class="nav-link"  type="submit" name="logout" value="Logout"/></form>

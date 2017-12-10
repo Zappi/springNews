@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: wad.springNews.serviceTests.ImageServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.41 s <<< FAILURE! - in wad.springNews.serviceTests.ImageServiceTest
+initializationError(wad.springNews.serviceTests.ImageServiceTest)  Time elapsed: 0.01 s  <<< ERROR!
+java.lang.Exception: No runnable methods
+

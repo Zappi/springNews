@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: wad.springNews.MockMvcTest.CategoriesTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.071 s <<< FAILURE! - in wad.springNews.MockMvcTest.CategoriesTest
+responseTypeHTML(wad.springNews.MockMvcTest.CategoriesTest)  Time elapsed: 0.014 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseTypeHTML(CategoriesTest.java:41)
+Caused by: java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseTypeHTML(CategoriesTest.java:41)
+
+responseContainsText(wad.springNews.MockMvcTest.CategoriesTest)  Time elapsed: 0.016 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseContainsText(CategoriesTest.java:47)
+Caused by: java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseContainsText(CategoriesTest.java:47)
+

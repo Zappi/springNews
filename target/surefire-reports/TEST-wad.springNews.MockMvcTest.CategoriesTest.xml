@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="wad.springNews.serviceTests.NewsServiceTest" time="14.374" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="wad.springNews.MockMvcTest.CategoriesTest" time="0.071" tests="3" errors="2" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -60,7 +60,33 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="handleEditNews" classname="wad.springNews.serviceTests.NewsServiceTest" time="0.574"/>
-  <testcase name="validateNews" classname="wad.springNews.serviceTests.NewsServiceTest" time="0.015"/>
-  <testcase name="validateReturnErrors" classname="wad.springNews.serviceTests.NewsServiceTest" time="0.19"/>
+  <testcase name="responseTypeHTML" classname="wad.springNews.MockMvcTest.CategoriesTest" time="0.014">
+    <error message="Request processing failed; nested exception is java.lang.NullPointerException" type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseTypeHTML(CategoriesTest.java:41)
+Caused by: java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseTypeHTML(CategoriesTest.java:41)
+</error>
+    <system-out><![CDATA[2017-12-10 20:08:35.537  INFO 20744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [wad.springNews.MockMvcTest.CategoriesTest], using SpringBootContextLoader
+2017-12-10 20:08:35.537  INFO 20744 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [wad.springNews.MockMvcTest.CategoriesTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2017-12-10 20:08:35.538  INFO 20744 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [wad.springNews.MockMvcTest.CategoriesTest]: CategoriesTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2017-12-10 20:08:35.540  INFO 20744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration wad.SpringNewsApplication for test class wad.springNews.MockMvcTest.CategoriesTest
+2017-12-10 20:08:35.546  INFO 20744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2017-12-10 20:08:35.546  INFO 20744 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6ce17052, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1f767f7b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4da040b6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@81fdcc2, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6f9b5e73, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@433a695c, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@cd0247d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7adf00e9, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4f82a107, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5fe25122, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@521c656f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5046ff8d]
+2017-12-10 20:08:35.550  INFO 20744 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring FrameworkServlet ''
+2017-12-10 20:08:35.551  INFO 20744 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
+2017-12-10 20:08:35.554  INFO 20744 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 3 ms
+]]></system-out>
+  </testcase>
+  <testcase name="statusOk" classname="wad.springNews.MockMvcTest.CategoriesTest" time="0.037"/>
+  <testcase name="responseContainsText" classname="wad.springNews.MockMvcTest.CategoriesTest" time="0.016">
+    <error message="Request processing failed; nested exception is java.lang.NullPointerException" type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseContainsText(CategoriesTest.java:47)
+Caused by: java.lang.NullPointerException
+	at wad.springNews.MockMvcTest.CategoriesTest.responseContainsText(CategoriesTest.java:47)
+</error>
+    <system-out><![CDATA[2017-12-10 20:08:35.603  INFO 20744 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring FrameworkServlet ''
+2017-12-10 20:08:35.603  INFO 20744 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
+2017-12-10 20:08:35.607  INFO 20744 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 4 ms
+]]></system-out>
+  </testcase>
 </testsuite>

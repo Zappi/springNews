@@ -1,2 +1,8 @@
-wad/springNews/serviceTests/NewsServiceTest.class
 wad/springNews/SpringNewsTest.class
+wad/springNews/serviceTests/JournalistServiceTest.class
+wad/springNews/serviceTests/CategoryServiceTest.class
+wad/springNews/MockMvcTest/NewsTest.class
+wad/springNews/MockMvcTest/CategoriesTest.class
+wad/springNews/serviceTests/ImageServiceTest.class
+wad/springNews/serviceTests/NewsServiceTest.class
+wad/springNews/MultipartFileMock.class
