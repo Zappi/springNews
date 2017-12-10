@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,7 +25,7 @@
                 </li>
 
                 <li>
-                    <a class="nav-link" th:href="@{/news/}">All News</a>
+                    <a class="nav-link" th:href="@{/news}">All News</a>
                 </li>
 
                 <li>
@@ -35,7 +39,14 @@
                 <li>
                     <a class="nav-link" th:href="@{/news/trending}">Trending</a>
                 </li>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li>
+                        <span class="nav-link" sec:authentication="name">Username</span> <form class="nav-link" method="post" action="#" th:action="@{/logout}"><input  class="nav-link"  type="submit" name="logout" value="Logout"/></form>
+                    </li>
+               </div>
+
             </ul>
+
         </div>
     </nav>
 

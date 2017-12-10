@@ -56,6 +56,7 @@
     <p th:text="${news.text}">Text</p>
 
 
+        <div sec:authorize="hasAuthority('ADMIN')">
         <footer>
             <a th:href="@{/news/edit/{id}(id=${news.id})}">Edit</a>
         </footer>
@@ -63,6 +64,7 @@
         <form method="POST" th:action="@{/news/delete/{id}(id=${news.id})}">
             <button type="submit" class="btn inline-block" value="delete">Delete</button>
         </form>
+        </div>
 
 
     </div>
