@@ -32,22 +32,24 @@ public class NewsServiceTest {
     private News testNews;
     private MultipartFileMock img;
     private MultipartFileMock jpgimg;
+    private MultipartFileMock empty;
 
     @Before
     @Transactional
-    public void setUp()  {
+    public void setUp() {
         News news = new News("Finland won football game", "Finland won 9-1", "Can you belive it?", LocalDateTime.now());
         newsRepository.save(news);
 
         testNews = newsRepository.findByHeading("Finland won football game");
         testId = testNews.getId();
-        this.img = new MultipartFileMock("Image", "Image.png", "image/png", new Long(120), new byte[0]);
-        this.jpgimg = new MultipartFileMock("Image", "Image.jpg", "image/jpg", new Long(120), new byte[0]);
+        this.img = new MultipartFileMock("Image", "Image.png", "image/png", (long) 120, new byte[0]);
+        this.jpgimg = new MultipartFileMock("Image", "Image.jpg", "image/jpg", (long) 120, new byte[0]);
+        this.empty = new MultipartFileMock("Image", "Image.jpg", "image/jpg", (long)0, new byte[0]);
     }
 
     @Test
     @Transactional
-    public void handleEditNews()  {
+    public void handleEditNews() {
         newsService.handleEdit(testId, "Finland won football game", "Finland won 7-1", "Can you belive it?");
         assertEquals("Finland won 7-1", newsRepository.getOne(testId).getLead());
     }
@@ -56,7 +58,7 @@ public class NewsServiceTest {
     @Transactional
     public void validateNews() throws IOException {
         List<String> errors = new ArrayList<>();
-        errors = newsService.validate("this", "lead", "text","jack","category",img);
+        errors = newsService.validate("this", "lead", "text", "jack", "category", img);
         assertEquals(0, errors.size());
     }
 
@@ -65,13 +67,19 @@ public class NewsServiceTest {
     public void validateReturnErrors() throws IOException {
         String tooLong = "a";
 
-        for(int i=0;i<=10001; i++) {
-            tooLong+="a";
+        for (int i = 0; i <= 10001; i++) {
+            tooLong += "a";
         }
 
         List<String> errors = newsService.validate(tooLong, tooLong, tooLong, "", "", jpgimg);
         assertNotNull(errors);
 
-    }
-}
 
+        List<String> errors2 = newsService.validate(tooLong, tooLong, tooLong, "", "", empty);
+        assertNotNull(errors2);
+
+        List<String> error3 = newsService.validate("", "", "", "", "", jpgimg);
+        assertNotNull(error3);
+    }
+
+}

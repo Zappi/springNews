@@ -18,13 +18,13 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/news/create").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/news").permitAll()
                 .antMatchers(HttpMethod.GET, "/news/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/news/{id}/content").permitAll()
                 .antMatchers(HttpMethod.GET, "/news/categories").permitAll()
                 .antMatchers(HttpMethod.GET, "/news/categories/{id}").permitAll()
-                .antMatchers("/news/create").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated();
 
         http.formLogin()
