@@ -75,10 +75,6 @@ public class News extends AbstractPersistable<Long>{
         this.image = image;
     }
 
-    public void setPageOpened(int pageOpened) {
-        this.pageOpened = pageOpened;
-    }
-
     public String getText() {
         return text;
     }
@@ -91,25 +87,16 @@ public class News extends AbstractPersistable<Long>{
         return localTime;
     }
 
-    public void setReleaseTime(LocalDateTime releaseTime) {
-        this.localTime = releaseTime;
-    }
 
     public List<Journalist> getJournalistList() {
         return journalistList;
     }
 
-    public void setJournalistList(List<Journalist> journalistList) {
-        this.journalistList = journalistList;
-    }
 
     public List<Category> getCategoryList() {
         return categoryList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
 
     public int getPageOpened() {
         return pageOpened;
@@ -120,38 +107,6 @@ public class News extends AbstractPersistable<Long>{
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof News)) return false;
-        if (!super.equals(o)) return false;
-
-        News news = (News) o;
-
-        if (getPageOpened() != news.getPageOpened()) return false;
-        if (getHeading() != null ? !getHeading().equals(news.getHeading()) : news.getHeading() != null) return false;
-        if (getLead() != null ? !getLead().equals(news.getLead()) : news.getLead() != null) return false;
-        if (getImage() != null ? !getImage().equals(news.getImage()) : news.getImage() != null) return false;
-        if (getText() != null ? !getText().equals(news.getText()) : news.getText() != null) return false;
-        if (localTime != null ? !localTime.equals(news.localTime) : news.localTime != null) return false;
-        if (getJournalistList() != null ? !getJournalistList().equals(news.getJournalistList()) : news.getJournalistList() != null)
-            return false;
-        return getCategoryList() != null ? getCategoryList().equals(news.getCategoryList()) : news.getCategoryList() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (getHeading() != null ? getHeading().hashCode() : 0);
-        result = 31 * result + (getLead() != null ? getLead().hashCode() : 0);
-        result = 31 * result + (getImage() != null ? getImage().hashCode() : 0);
-        result = 31 * result + (getText() != null ? getText().hashCode() : 0);
-        result = 31 * result + getPageOpened();
-        result = 31 * result + (localTime != null ? localTime.hashCode() : 0);
-        result = 31 * result + (getJournalistList() != null ? getJournalistList().hashCode() : 0);
-        result = 31 * result + (getCategoryList() != null ? getCategoryList().hashCode() : 0);
-        return result;
-    }
 
 
 }

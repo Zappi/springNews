@@ -52,15 +52,6 @@ public class Image extends AbstractPersistable<Long> {
         return content;
     }
 
-
-    public LocalDateTime getReleaseTime() {
-        return localTime;
-    }
-
-    public void setReleaseTime(LocalDateTime releaseTime) {
-        this.localTime = releaseTime;
-    }
-
     public News getNews() {
         return news;
     }
@@ -88,12 +79,5 @@ public class Image extends AbstractPersistable<Long> {
     public void setContentLength(Long contentLength) {
         this.contentLength = contentLength;
     }
-
-    public LocalDateTime getLocalTime() {
-        return localTime;
-    }
-
-    public void setLocalTime(LocalDateTime localTime) {
-        this.localTime = localTime;
-    }
+    
 }
