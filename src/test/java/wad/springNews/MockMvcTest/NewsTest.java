@@ -55,6 +55,6 @@ public class NewsTest {
                 .andReturn();
 
         String content = res.getResponse().getContentAsString();
-        Assert.assertTrue(content.contains("Most clicked news in the previous week"));
+        Assert.assertTrue(content.contains("Most clicked news"));
     }
 }

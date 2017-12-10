@@ -16,13 +16,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class News extends AbstractPersistable<Long> {
+public class News extends AbstractPersistable<Long>{
 
     @Size(max = 1000)
     private String heading;
@@ -33,7 +34,7 @@ public class News extends AbstractPersistable<Long> {
     private Image image;
     @Size(max = 10000)
     private String text;
-    private int pageOpened = 0;
+    private int pageOpened;
     private LocalDateTime localTime;
     @ManyToMany
     private List<Journalist> journalistList;
@@ -47,6 +48,7 @@ public class News extends AbstractPersistable<Long> {
         this.localTime = localTime;
         this.categoryList = new ArrayList<>();
         this.journalistList = new ArrayList<>();
+        this.pageOpened = 0;
     }
 
     public String getHeading() {
@@ -117,6 +119,7 @@ public class News extends AbstractPersistable<Long> {
         pageOpened+=1;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,4 +152,6 @@ public class News extends AbstractPersistable<Long> {
         result = 31 * result + (getCategoryList() != null ? getCategoryList().hashCode() : 0);
         return result;
     }
+
+
 }

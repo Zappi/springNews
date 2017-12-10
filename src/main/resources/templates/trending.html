@@ -12,6 +12,11 @@
         ul, li {
             list-style-type: none;
         }
+
+        span {
+            padding-left: 5px;
+        }
+
     </style>
 
 </head>
@@ -20,12 +25,14 @@
 
     <div th:replace="fragments/header :: nav"></div>
 
-    <h1>Most clicked news in the previous week</h1>
+    <h1>Most clicked news</h1>
 
     <ul>
         <li th:each="singleNew: ${news}">
             <a th:href="@{/news/{id}(id=${singleNew.id})}" th:text="${singleNew.heading}">Heading</a>
             <span th:text="${singleNew.localTime}">Date</span>
+            <span>Clicks: </span>
+            <span th:text="${singleNew.pageOpened}">how many times</span>
         </li>
     </ul>
 </div>

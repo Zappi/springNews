@@ -26,6 +26,8 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Transactional
@@ -181,8 +183,9 @@ public class NewsController {
     //Shows now only most clicked of all the time
     @GetMapping("/news/trending")
     public String getLastWeeksMostReadNews(Model model) {
-        Pageable pageable = PageRequest.of(0,10, Sort.Direction.DESC, "pageOpened");
-        model.addAttribute("news", newsRepository.findAll(pageable));
+        List<News> news = newsRepository.findAll();
+        Collections.sort(news, Comparator.comparingInt(News::getPageOpened).reversed());
+        model.addAttribute("news", news);
 
         return "trending";
     }
