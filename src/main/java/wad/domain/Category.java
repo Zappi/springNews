@@ -27,7 +27,6 @@ public class Category extends AbstractPersistable<Long> {
     public Category(String name) {
         this.name = name;
         this.newsList = new ArrayList<>();
-        //this.newsId = new ArrayList<>();
     }
 
     public String getName() {
