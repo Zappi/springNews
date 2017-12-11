@@ -84,7 +84,7 @@ public class NewsService {
     }
 
     private boolean validateImageSize(MultipartFile image) throws IOException {
-        if(image.getBytes().length > 1048576) {
+        if(image.getSize() >  1000000 ) {
             return false;
         }
         return true;
