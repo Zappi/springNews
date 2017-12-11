@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Zappi/springNews.svg?branch=master)](https://travis-ci.org/Zappi/springNews)
 [![codecov](https://codecov.io/gh/Zappi/springNews/branch/master/graph/badge.svg)](https://codecov.io/gh/Zappi/springNews)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=wepaspringnews)]
+
 
 A small assingment for the course Web Server programming with Java. Made by usin Java SpringBoot
 
