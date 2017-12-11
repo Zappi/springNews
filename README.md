@@ -14,6 +14,9 @@ Password: admin
 
 [Documentation](documentation/description.md)
 
+### Warning: 
+Adding too large image file is causing an error at the moment
+
 ### Installing 
 
 ```sh
